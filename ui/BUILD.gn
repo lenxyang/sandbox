@@ -1,0 +1,4 @@
+
+group("ui") {
+  deps = ["panel:sandbox_ui_panel"]
+}

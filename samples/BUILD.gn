@@ -1,0 +1,7 @@
+
+
+group("samples") {
+  deps = [
+    "triangle:triangle",
+  ]
+}
