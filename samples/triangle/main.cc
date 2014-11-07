@@ -1,9 +1,8 @@
 #include "azer/util/sampleapp.h"
-#include "base/base.h"
-
+#include "azer/base/appinit.h"
+#include "base/at_exit.h"
 #include "diffuse.afx.h"
 
-#define EFFECT_GEN_DIR "out/dbg/gen/sandbox/basic/triangle/"
 #define SHADER_NAME "diffuse.afx"
 using base::FilePath;
 
@@ -47,7 +46,7 @@ bool MainDelegate::OnInit() {
 }
 
 int main(int argc, char* argv[]) {
-  ::base::InitApp(&argc, &argv, "");
+  ::azer::InitApp(&argc, &argv, "");
 
   MainDelegate delegate;
   SampleApp app(&delegate);

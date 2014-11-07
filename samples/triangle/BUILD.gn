@@ -8,10 +8,13 @@ afx("effect") {
 executable("sandbox_samples_triangle") {
   sources = ["main.cc"]
   deps = [
-    "//base:appinit",
-    "//azer/util:azer_util",
-    "//azer/render:render",
+    "//azer/base:appinit",
+    "//azer/util",
+    "//azer/render",
     "//azer/render_system/d3d11:d3d11_render_system",
     ":effect",
   ]
+
+  gen_dir = rebase_path(target_gen_dir, root_build_dir)
+  defines = ["EFFECT_GEN_DIR=\"$gen_dir\""]
 }
