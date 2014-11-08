@@ -2,6 +2,7 @@
 
 group("samples") {
   deps = [
-    "triangle:sandbox_samples_triangle",
+    "triangle:sample_triangle",
+    "cubemap:sample_cubemap",
   ]
 }

@@ -5,7 +5,7 @@ afx("effect") {
   filename = "diffuse"
 }
 
-executable("sandbox_samples_triangle") {
+executable("sample_triangle") {
   sources = ["main.cc"]
   deps = [
     "//azer/base:appinit",
