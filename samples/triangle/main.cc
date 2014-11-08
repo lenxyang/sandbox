@@ -3,7 +3,7 @@
 #include "base/at_exit.h"
 #include "diffuse.afx.h"
 
-#define SHADER_NAME "diffuse.afx"
+#define SHADER_NAME "/diffuse.afx"
 using base::FilePath;
 
 class MainDelegate : public SampleApp::Delegate {

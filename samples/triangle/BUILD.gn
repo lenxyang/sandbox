@@ -15,6 +15,6 @@ executable("sandbox_samples_triangle") {
     ":effect",
   ]
 
-  gen_dir = rebase_path(target_gen_dir, root_build_dir)
-  defines = ["EFFECT_GEN_DIR=\"$gen_dir\""]
+  gen_dir = rebase_path(target_gen_dir)
+  defines = ["EFFECT_GEN_DIR=\"$gen_dir/\""]
 }
