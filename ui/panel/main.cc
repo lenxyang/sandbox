@@ -1,9 +1,9 @@
 #include "azer/util/sampleapp.h"
 #include "diffuse.afx.h"
 #include "azer/base/appinit.h"
+#include "azer/ui/widget/all.h"
 #include "base/files/file_path.h"
 
-#define EFFECT_GEN_DIR "out/dbg/gen/azer/sandbox/ui/panel/"
 #define SHADER_NAME "diffuse.afx"
 using base::FilePath;
 
