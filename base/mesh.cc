@@ -1,4 +1,4 @@
-#include "sandbox/base/mesh.h"
+#include "azer/sandbox/base/mesh.h"
 
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
@@ -60,7 +60,7 @@ bool LoadMeshData(const ::base::FilePath& filepath, MeshData* mesh,
         ::base::FilePath realpath;
         realpath = filepath.DirName();
         realpath = realpath.Append(texpath.BaseName());
-        azer::TexturePtr texptr(azer::Texture::LoadShaderTexture(realpath, rs));
+        azer::TexturePtr texptr(azer::Texture::Load(azer::Texture::k2D, realpath, rs));
         MeshData::Material mtrl;
         mtrl.tex = texptr;
         mesh->mutable_materials()->push_back(mtrl);

@@ -1,0 +1,14 @@
+
+static_library("base") {
+  sources = [
+    "mesh.cc",
+    "mesh.h",
+  ]
+  deps = [
+    "//azer/base:appinit",
+    "//azer/util",
+    "//azer/render",
+    "//azer/render_system/d3d11:d3d11_render_system",
+    "//azer/third_party/assimp",
+  ]
+}

@@ -1,8 +1,8 @@
 #package sandbox;
 
-#include "azer/sandbox/samples/base/afx/material.afxi"
+#include "azer/sandbox/base/afx/material.afxi"
 
-[cppstruct="DirLight" cpphead="sandbox/base/afx/light.afx.h"]
+[cppstruct="DirLight" cpphead="azer/sandbox/base/afx/light.afx.h"]
 struct DirLight {
   vec4 dir;
   vec4 diffuse;

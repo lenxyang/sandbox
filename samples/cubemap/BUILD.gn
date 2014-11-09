@@ -7,8 +7,7 @@ afx("effect") {
 executable("sample_cubemap") {
   sources = ["main.cc"]
   deps = [
-    "//azer/base:appinit",
-    "//azer/render",
+    "//azer/sandbox/base",
     ":effect",
   ]
 

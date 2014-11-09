@@ -1,12 +1,9 @@
 
-#include "azer/render/render.h"
-#include "azer/base/appinit.h"
 #include "azer/sandbox/base/base.h"
 
 #include "diffuse.afx.h"
-#define MEDIADIR "azer/sandbox/media/"
-#define MESH_PATH AZER_LITERAL(MEDIADIR "model/sphere.3ds")
-#define CUBEMAP_PATH AZER_LITERAL(MEDIAIDR "textures/nvlobby_new_cube_mipmap.dds")
+#define MESH_PATH L"azer/sandbox/media/model/sphere.3ds"
+#define CUBEMAP_PATH L"azer/sandbox/media/textures/nvlobby_new_cube_mipmap.dds"
 #define SHADER_NAME "diffuse.afx"
 
 class MyMesh : public Mesh {
@@ -27,7 +24,7 @@ class MyMesh : public Mesh {
   DISALLOW_COPY_AND_ASSIGN(MyMesh);
 };
 
-class MainDelegate : public wxSampleApp::Delegate {
+class MainDelegate : public SampleApp::Delegate {
  public:
   MainDelegate() {}
   virtual bool OnInit();
@@ -68,7 +65,6 @@ bool MainDelegate::OnInit() {
 void MainDelegate::OnUpdateScene(double time, float delta_time) {
   float rspeed = 3.14f * 2.0f / 4.0f;
   azer::Radians camera_speed(azer::kPI / 2.0f);
-  UpdatedownCamera(&camera_, 50.0f, camera_speed, delta_time);
   mesh_->OnUpdateScene(camera_);
 }
 
@@ -94,7 +90,7 @@ bool MyMesh::Init(MeshData* data, azer::RenderSystem* rs) {
     return false;
   }
 
-  cubemap_.reset(azer::Texture::LoadShaderTexture(CUBEMAP_PATH, rs));
+  cubemap_.reset(azer::Texture::Load(azer::Texture::kCubemap, CUBEMAP_PATH, rs));
   return true;
 }
 
@@ -121,10 +117,10 @@ void MyMesh::OnUpdateScene(const azer::Camera& camera) {
 }
 
 int main(int argc, char* argv[]) {
-  ::base::InitApp(&argc, &argv, "");
+  ::azer::InitApp(&argc, &argv, "");
   MainDelegate delegate;
   SampleApp app(&delegate);
-  app.iNIT();
+  app.Init();
   app.MainLoop();
   return 0;
 }
