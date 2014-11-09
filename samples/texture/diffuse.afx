@@ -1,0 +1,33 @@
+
+technique [
+    name = "diffuse"
+    ps_main="ps_main"
+    vs_main="vs_main"
+    class_name="DiffuseEffect"
+           ];
+
+[uniform_func="SetTexture"] uniform Texture2D tex;
+
+exchange struct VsOutput {
+  [semantic="position" system="true"]
+  vec4 position;
+  vec2 texcoord0;
+};
+
+exchange struct VSInput {
+  vec4 position;
+  vec2 texcoord0;
+};
+
+VsOutput vs_main(VSInput input) {
+  VsOutput o;
+  o.position = input.position;
+  o.texcoord0 = input.texcoord0;
+  return o;
+}
+
+[system="true" semantic="target"]
+vec4 ps_main(VsOutput o) {
+  return sample2D(tex, o.texcoord0);
+}
+
