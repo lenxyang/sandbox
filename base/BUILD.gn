@@ -5,7 +5,6 @@ static_library("base") {
     "mesh.h",
   ]
   deps = [
-    "//azer/base:appinit",
     "//azer/util",
     "//azer/render",
     "//azer/render_system/d3d11:d3d11_render_system",

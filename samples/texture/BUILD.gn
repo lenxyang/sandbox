@@ -8,10 +8,7 @@ afx("effect") {
 executable("sample_texture") {
   sources = ["main.cc"]
   deps = [
-    "//azer/base:appinit",
-    "//azer/util",
-    "//azer/render",
-    "//azer/render_system/d3d11:d3d11_render_system",
+    "//azer/sandbox/base",
     ":effect",
   ]
 
