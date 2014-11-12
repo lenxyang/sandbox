@@ -2,8 +2,8 @@
 
 group("samples") {
   deps = [
-    "triangle:sample_triangle",
-    "texture:sample_texture",
-    "cubemap:sample_cubemap",
+    "triangle",
+    "texture",
+    "cubemap",
   ]
 }

@@ -5,7 +5,8 @@ afx("effect") {
   filename = "diffuse"
 }
 
-executable("sample_texture") {
+executable("texture") {
+  output_name = "azer_sample_texture"
   sources = ["main.cc"]
   deps = [
     "//azer/sandbox/base",

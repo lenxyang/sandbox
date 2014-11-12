@@ -4,7 +4,8 @@ afx("effect") {
   source = "diffuse.afx"
   filename = "diffuse"
 }
-executable("sample_cubemap") {
+executable("cubemap") {
+  output_name = "azer_sample_cubemap"
   sources = ["main.cc"]
   deps = [
     "//azer/sandbox/base",

@@ -5,7 +5,8 @@ afx("effect") {
   filename = "diffuse"
 }
 
-executable("sample_triangle") {
+executable("triangle") {
+  output_name = "azer_sample_triangle"
   sources = ["main.cc"]
   deps = [
     "//azer/sandbox/base",

@@ -4,7 +4,8 @@ afx("effect") {
   source = "diffuse.afx"
   filename = "diffuse"
 }
-executable("sandbox_ui_panel") {
+executable("panel") {
+  output_name = "sandbox_ui_panel"                             
   sources = ["main.cc"]
   deps = [
     "//azer/sandbox/base",
