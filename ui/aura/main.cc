@@ -47,7 +47,8 @@ int main(int argc, char* argv[]) {
 
   views::Widget* widget = new views::Widget;
   views::Widget::InitParams params;
-  params.delegate = new ExamplesWindow;
+  ExamplesWindow* win = new ExamplesWindow;
+  params.delegate = win;
   params.context = NULL;
   params.bounds = gfx::Rect(0, 0, 800, 600);
   widget->Init(params);
