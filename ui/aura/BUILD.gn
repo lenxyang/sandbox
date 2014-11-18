@@ -1,0 +1,23 @@
+
+
+executable("aura") {
+  testonly = true                                   
+  output_name = "azer_aura_demo"
+  sources = ["main.cc"]
+  deps = [
+    "//base",
+    "//base:i18n",
+    "//ui/base",
+    "//ui/compositor",
+    "//ui/compositor:test_support",
+    "//ui/gfx",
+    "//ui/gl",
+    "//ui/events",
+    "//ui/views",
+    "//ui/views:test_support",
+    "//ui/wm",
+    "//ui/aura",
+    "//ui/resources",
+    "//ui/resources:ui_test_pak",
+  ]
+}

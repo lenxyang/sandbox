@@ -1,4 +1,13 @@
 
 group("ui") {
-  deps = ["panel:panel"]
+  deps = [
+    "panel",
+  ]
+}
+
+group("chrome_ui") {
+  testonly = true
+  deps = [
+    "aura",
+  ]
 }
