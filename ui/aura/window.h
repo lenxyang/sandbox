@@ -52,6 +52,10 @@ class ExamplesWindow : public views::WidgetDelegateView {
     */
   }
 
+  virtual gfx::Size GetPreferredSize() const override {
+	return gfx::Size(300, 300);
+  }
+
   virtual void Paint(gfx::Canvas* canvas, const views::CullSet& cullset) {
 	canvas->FillRect(GetLocalBounds(), SK_ColorBLACK);
   }
