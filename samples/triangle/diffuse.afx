@@ -4,6 +4,7 @@ technique [
     ps_main="ps_main"
     vs_main="vs_main"
     class_name="DiffuseEffect"
+    fpattern="diffuse2"
            ];
 
 exchange struct VsOutput {
