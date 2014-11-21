@@ -3,6 +3,8 @@ static_library("base") {
   sources = [
     "mesh.cc",
     "mesh.h",
+    "camera_control.cc",
+    "camera_control.h",
   ]
   deps = [
     "//azer/util",
