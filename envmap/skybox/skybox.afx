@@ -1,0 +1,31 @@
+technique [
+    name = "skybox"
+    ps_main="ps_main"
+    vs_main="vs_main"
+    class_name="SkyboxEffect"
+           ];
+
+[uniform_func="SetPVW"] uniform mat4 pvw;
+[uniform_func="SetWorld"] uniform mat4 world;
+[uniform_func="SetCubemap"] uniform TextureCube cube;
+
+exchange struct VsOutput {
+  [semantic="position" system="true"]
+  vec4 position;
+  vec4 texpos;
+};
+
+exchange struct VSInput {
+  vec4 position;
+};
+
+VsOutput vs_main(VSInput input) {
+  VsOutput o;
+  return o;
+}
+
+[system="true" semantic="target"]
+vec4 ps_main(VsOutput o) {
+  return sampleCube(cube, o.texpos);
+}
+

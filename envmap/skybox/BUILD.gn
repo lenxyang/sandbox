@@ -1,0 +1,27 @@
+import("//azer/build/templates/afx.gni")
+
+afx("effect") {
+  source = "diffuse.afx"
+  filename = "diffuse"
+}
+
+afx("skybox_effect") {
+  source = "skybox.afx"
+  filename = "skybox"
+}
+
+executable("skybox") {
+  output_name = "azer_envmap_skybox"
+  sources = [
+    "main.cc",
+    "skybox.cc",
+    "skybox.h",
+  ]
+  deps = [
+    "//azer/sandbox/base",
+    ":effect",
+  ]
+
+  gen_dir = rebase_path(target_gen_dir)
+  defines = ["EFFECT_GEN_DIR=\"$gen_dir/\""]
+}

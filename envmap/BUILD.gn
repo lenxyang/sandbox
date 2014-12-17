@@ -1,0 +1,6 @@
+
+group("envmap") {
+  deps = [
+    "skybox",
+  ]
+}

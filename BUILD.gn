@@ -3,5 +3,6 @@ group("sandbox") {
   deps = [
     "ui",
     "samples",
+    "envmap",
   ]
 }
