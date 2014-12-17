@@ -1,6 +1,11 @@
-#include "azer/sandbox/envmap/skybox.h"
+#include "azer/sandbox/envmap/skybox/skybox.h"
 
-#define CUBEMAP_PATH L"azer/sandbox/media/cubemap/snowcube1024.dds"
+#include "skybox.afx.h"
+#define SKYBOX_SHADER_NAME "/skybox.afx"
+
+using azer::Vector4;
+using azer::VertexData;
+using azer::IndicesData;
 
 Skybox::Skybox(const ::base::FilePath& texpath, azer::RenderSystem* rs) 
     : texpath_(texpath)
@@ -8,20 +13,20 @@ Skybox::Skybox(const ::base::FilePath& texpath, azer::RenderSystem* rs)
 }
 
 bool Skybox::Init() {
-  cubemap_.reset(azer::Texture::Load(azer::Texture::kCubemap, texpath_, 
-                                     render_system_));
+  azer::RenderSystem* rs = render_system_;
+  cubemap_.reset(azer::Texture::Load(azer::Texture::kCubemap, texpath_, rs));
   if (!cubemap_.get()) {
     return false;
   }
 
   azer::ShaderArray shaders;
-  CHECK(azer::LoadVertexShader(EFFECT_GEN_DIR SHADER_NAME ".vs", &shaders));
-  CHECK(azer::LoadPixelShader(EFFECT_GEN_DIR SHADER_NAME ".ps", &shaders));
-  effect_.reset(new DiffuseEffect(shaders.GetShaderVec(), rs));
-  desc_ = effect_->GetVertexDesc();
+  CHECK(azer::LoadVertexShader(EFFECT_GEN_DIR SKYBOX_SHADER_NAME ".vs", &shaders));
+  CHECK(azer::LoadPixelShader(EFFECT_GEN_DIR SKYBOX_SHADER_NAME ".ps", &shaders));
+  effect_.reset(new SkyboxEffect(shaders.GetShaderVec(), rs));
+  azer::VertexDescPtr desc = effect_->GetVertexDesc();
 
   const int kVertexNum = 8;
-  VertexData data(effect_->GetVertexDesc(), kVertexNum);
+  VertexData data(desc, kVertexNum);
   Vector4* begin_vptr = (Vector4*)data.pointer();
   Vector4* vptr = begin_vptr;
   *vptr++ = azer::Vector4(-0.5f,  0.5f,  0.5f, 1.0f);
@@ -51,8 +56,11 @@ bool Skybox::Init() {
   return true;
 }
 
-void Skybox::Render(azer::Renderer* renderer) {
+void Skybox::Render(const azer::Camera& camera, azer::Renderer* renderer) {
+  azer::Matrix4 world = std::move(azer::Translate(0.0f, 0.0f, 0.0f));
+  effect_->SetPVW(std::move(camera.GetProjViewMatrix() * world));
+  effect_->SetWorld(world);
   effect_->SetCubemap(cubemap_);
   effect_->Use(renderer);
-  renderer->DrawIndex();
+  renderer->DrawIndex(vb_.get(), ib_.get(), azer::kTriangleList);
 }

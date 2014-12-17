@@ -20,6 +20,7 @@ executable("skybox") {
   deps = [
     "//azer/sandbox/base",
     ":effect",
+    ":skybox_effect",
   ]
 
   gen_dir = rebase_path(target_gen_dir)

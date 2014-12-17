@@ -21,11 +21,13 @@ exchange struct VSInput {
 
 VsOutput vs_main(VSInput input) {
   VsOutput o;
+  o.position = pvw * input.position;
+  o.texpos = world * input.position;
   return o;
 }
 
 [system="true" semantic="target"]
 vec4 ps_main(VsOutput o) {
-  return sampleCube(cube, o.texpos);
+  return sampleCube(cube, o.texpos.xyz);
 }
 
