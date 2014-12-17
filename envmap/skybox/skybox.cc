@@ -57,10 +57,14 @@ bool Skybox::Init() {
 }
 
 void Skybox::Render(const azer::Camera& camera, azer::Renderer* renderer) {
-  azer::Matrix4 world = std::move(azer::Translate(0.0f, 0.0f, 0.0f));
+  azer::Matrix4 world = std::move(azer::Translate(camera.position())
+                                  * azer::Scale(100.0f, 100.0f, 100.0));
+  azer::FrontFace backup_frontface = renderer->GetFrontFace();
+  renderer->SetFrontFace(azer::kClockwise);
   effect_->SetPVW(std::move(camera.GetProjViewMatrix() * world));
   effect_->SetWorld(world);
   effect_->SetCubemap(cubemap_);
   effect_->Use(renderer);
   renderer->DrawIndex(vb_.get(), ib_.get(), azer::kTriangleList);
+  renderer->SetFrontFace(backup_frontface);
 }
