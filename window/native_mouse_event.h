@@ -7,22 +7,22 @@
 
 namespace azer {
 namespace window {
-class AZER_EXPORT NativeMouseEvent : public NativeEvent {
+class NativeMouseEvent : public NativeEvent {
  public:
  protected:
 };
 
-class AZER_EXPORT NativeMouseMoveEvent : public NativeMouseEvent {
+class NativeMouseMoveEvent : public NativeMouseEvent {
 public:
 };
 
-class AZER_EXPORT NativeMouseKeydownEvent : public NativeMouseEvent {
+class NativeMouseKeydownEvent : public NativeMouseEvent {
 };
 
-class AZER_EXPORT NativeMouseKeyupEvent : public NativeMouseEvent {
+class NativeMouseKeyupEvent : public NativeMouseEvent {
 };
 
-class AZER_EXPORT NativeMouseClickEvent : public NativeMouseEvent {
+class NativeMouseClickEvent : public NativeMouseEvent {
  public:
  private:
 };

@@ -19,6 +19,8 @@ static_library("window") {
   deps = [
     "//base", 
     "//azer/render",
+    "//ui/gfx",
+    "//ui/gfx/geometry",
   ]
   configs += ["//azer/base:build_render_config"]
 }
