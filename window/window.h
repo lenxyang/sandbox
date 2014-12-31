@@ -2,14 +2,14 @@
 
 #include "base/basictypes.h"
 #include "azer/base/export.h"
-#include "azer/samples/window/native_handle.h"
-#include "azer/samples/window/native_event.h"
-#include "azer/samples/window/native_event_handler.h"
+#include "azer/sandbox/window/native_handle.h"
+#include "azer/sandbox/window/native_event.h"
+#include "azer/sandbox/window/native_event_handler.h"
 #include "ui/gfx/rect.h"
 
 namespace azer {
 namespace window {
-class AZER_EXPORT Window : public NativeEventHandler {
+class Window : public NativeEventHandler {
  public:
   Window() : handle_(kInvalidWindowHandle) {}
 

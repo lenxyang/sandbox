@@ -8,14 +8,14 @@
 
 #include "base/basictypes.h"
 #include "base/time/time.h"
-#include "azer/samples/window/window.h"
+#include "azer/sandbox/window/window.h"
 #include "ui/gfx/geometry/size.h"
 #include "ui/gfx/geometry/rect.h"
 
 namespace azer {
 class RenderSystem;
 
-class AZER_EXPORT WindowHost : public window::Window {
+class WindowHost : public window::Window {
  public:
   struct Options {
     int32 left;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "azer/sandbox/base/window_host.h"
+#include "azer/sandbox/window/window_host.h"
 #include "base/time/time.h"
 
 namespace azer {

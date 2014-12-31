@@ -2,7 +2,7 @@
 
 #include "base/basictypes.h"
 #include "azer/base/export.h"
-#include "azer/samples/window/native_handle.h"
+#include "azer/sandbox/window/native_handle.h"
 
 namespace azer {
 namespace window {
@@ -13,7 +13,7 @@ class NativeMouseMoveEvent;
 class NativeMouseClickEvent;
 class NativeKeyEvent;
 
-class AZER_EXPORT NativeEventHandler {
+class NativeEventHandler {
  public:
   NativeEventHandler() {}
   virtual ~NativeEventHandler() {}

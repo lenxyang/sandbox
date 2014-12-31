@@ -20,7 +20,7 @@ SampleApp::SampleApp(Delegate* delegate)
 }
 
 bool SampleApp::OnInit() {
-  CHECK(azer::LoadRenderSystem(this));
+  CHECK(azer::LoadRenderSystem((gfx::AcceleratedWidget)Handle()));
   DCHECK(render_system_ == NULL);
   render_system_ = azer::RenderSystem::Current();
 

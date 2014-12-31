@@ -2,12 +2,12 @@
 
 #include "base/basictypes.h"
 #include "azer/base/export.h"
-#include "azer/samples/window/native_handle.h"
+#include "azer/sandbox/window/native_handle.h"
 
 namespace azer {
 namespace window {
 class Window;
-class AZER_EXPORT NativeEvent {
+class NativeEvent {
  public:
   virtual ~NativeEvent() {}
   enum EventType {

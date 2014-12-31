@@ -1,9 +1,9 @@
-#include "azer/ui/window/window_host.h"
+#include "azer/sandbox/window/window_host.h"
 
 #include <windows.h>
 #include <tchar.h>
 
-#include "azer/ui/window/native_event.h"
+#include "azer/sandbox/window/native_event.h"
 #include "base/logging.h"
 #include "base/lazy_instance.h"
 #include "base/strings/utf_string_conversions.h"
