@@ -1,0 +1,24 @@
+
+
+static_library("window") {
+  sources = [
+    "handle.h",
+    "message_loop_win.cc",
+    "message_loop.h",
+    "native_event_handler.h",
+    "native_event_handler.cc",
+    "native_event.h",
+    "native_mouse_event.h",
+    "window_host.cc",
+    "window_host.h",
+    "window_host_win.cc",
+    "window_win.cc",
+    "window.h",
+  ]
+
+  deps = [
+    "//base", 
+    "//azer/render",
+  ]
+  configs += ["//azer/base:build_render_config"]
+}
