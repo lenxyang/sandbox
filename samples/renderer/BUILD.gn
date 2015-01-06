@@ -1,0 +1,18 @@
+import("//azer/build/templates/afx.gni")
+
+afx("effect") {
+  source = "diffuse.afx"
+  filename = "diffuse"
+}
+
+executable("renderer") {
+  output_name = "azer_sample_renderer"
+  sources = ["main.cc"]
+  deps = [
+    "//azer/sandbox/base",
+    ":effect",
+  ]
+
+  gen_dir = rebase_path(target_gen_dir)
+  defines = ["EFFECT_GEN_DIR=\"$gen_dir/\""]
+}

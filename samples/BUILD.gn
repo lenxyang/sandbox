@@ -4,7 +4,9 @@ group("samples") {
   deps = [
     "triangle",
     "texture",
+    "transform",
     "cubemap",
     "light",
+    "renderer",
   ]
 }

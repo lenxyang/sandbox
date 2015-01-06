@@ -1,0 +1,24 @@
+import("//azer/build/templates/afx.gni")
+
+afx("rotate_effect") {
+  source = "rotate.afx"
+  filename = "rotate"
+}
+
+executable("rotate") {
+  output_name = "azer_sample_rotate"
+  sources = ["rotate.cc"]
+  deps = [
+    "//azer/sandbox/base",
+    ":rotate_effect",
+  ]
+
+  gen_dir = rebase_path(target_gen_dir)
+  defines = ["EFFECT_GEN_DIR=\"$gen_dir/\""]
+}
+
+group("transform") {
+  deps = [
+    ":rotate",
+  ]
+}
