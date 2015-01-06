@@ -30,11 +30,11 @@ bool MainDelegate::OnInit() {
   CHECK(azer::LoadPixelShader(EFFECT_GEN_DIR SHADER_NAME ".ps", &shaders));
   effect_.reset(new RotateEffect(shaders.GetShaderVec(), rs));
   RotateEffect::Vertex v[] = {
-    RotateEffect::Vertex(azer::Vector4( 0.0f, 1.0f, 0.5f, 1.0f ),
+    RotateEffect::Vertex(azer::Vector4( 0.0f, 1.0f, 0.0f, 1.0f ),
                           azer::Vector2( 0.5f, 0.0f)),
-    RotateEffect::Vertex(azer::Vector4( -1.0f, -1.0f, 0.5f, 1.0f ),
+    RotateEffect::Vertex(azer::Vector4( -1.0f, -1.0f, 0.0f, 1.0f ),
                           azer::Vector2( 0.0f, 1.0f)),
-    RotateEffect::Vertex(azer::Vector4( 1.0f, -1.0f, 0.5f, 1.0f ),
+    RotateEffect::Vertex(azer::Vector4( 1.0f, -1.0f, 0.0f, 1.0f ),
                           azer::Vector2( 1.0f, 1.0f)),
   };
   azer::VertexData vdata(effect_->GetVertexDesc(), ARRAYSIZE(v));
@@ -43,11 +43,12 @@ bool MainDelegate::OnInit() {
   tex_.reset(azer::Texture::Load(azer::Texture::k2D, TEXPATH, rs));
 
   camera_.SetPosition(azer::Vector3(0.0f, 0.0f, 5.0f));
+  camera_.SetLookAt(azer::Vector3(0.0f, 0.0f, 0.0f));
   return true;
 }
 
 void MainDelegate::OnUpdateScene(double time, float delta_time) {
-  world_ = azer::RotateY(azer::Degree(time / 300.0f));
+  world_ = azer::RotateY(azer::Radians(time));
 }
 
 void MainDelegate::OnRenderScene(double time, float delta_time) {
@@ -57,6 +58,7 @@ void MainDelegate::OnRenderScene(double time, float delta_time) {
   renderer->Use();
   renderer->Clear(azer::Vector4(0.0f, 0.0f, 0.0f, 1.0f));
   renderer->ClearDepthAndStencil();
+  renderer->SetCullingMode(azer::kCullNone);
   effect_->SetPVW(pvw);
   effect_->SetTexture(tex_);
   effect_->Use(renderer);
