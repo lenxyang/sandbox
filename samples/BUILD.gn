@@ -6,5 +6,6 @@ group("samples") {
     "texture",
     "cubemap",
     "light",
+    "renderer",
   ]
 }
