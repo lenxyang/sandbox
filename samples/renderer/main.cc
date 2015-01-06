@@ -8,6 +8,7 @@ using base::FilePath;
 
 class MainDelegate : public SampleApp::Delegate {
  public:
+  MainDelegate() {}
   virtual bool OnInit();
   virtual void OnUpdateScene(double time, float delta_time) {}
   virtual void OnRenderScene(double time, float delta_time);
@@ -38,20 +39,21 @@ bool MainDelegate::OnInit() {
   memcpy(vdata.pointer(), (uint8*)v, sizeof(v));
   vb_.reset(rs->CreateVertexBuffer(azer::VertexBuffer::Options(), &vdata));
 
-  overlay_.reset(rs->CreateOverlay(gfx::RectF(-0.5, -0.5, 1.0f, 1.0f)));
+  overlay_.reset(rs->CreateOverlay(
+      gfx::RectF(-1.0f, 1.0f - 0.25f, 0.25f, 0.25f)));
 
   azer::Texture::Options rdopt;
-  rdopt.width = surface->GetBounds().width();
-  rdopt.height = surface->GetBounds().height();
+  rdopt.width = 800;
+  rdopt.height = 600;
   rdopt.target = (azer::Texture::BindTarget)
       (azer::Texture::kRenderTarget | azer::Texture::kShaderResource);
-  renderer_.reset(rs->CreateRenderer(rdopt));
+  texrenderer_.reset(rs->CreateRenderer(rdopt));
   return true;
 }
 
 void MainDelegate::OnRenderScene(double time, float delta_time) {
   azer::RenderSystem* rs = azer::RenderSystem::Current();
-  azer::Renderer* renderer = renderer_.get();
+  azer::Renderer* renderer = texrenderer_.get();
   renderer->Use();
   renderer->Clear(azer::Vector4(0.0f, 0.0f, 0.0f, 1.0f));
   renderer->ClearDepthAndStencil();
@@ -59,13 +61,16 @@ void MainDelegate::OnRenderScene(double time, float delta_time) {
   renderer->Draw(vb_.get(), azer::kTriangleList, 3, 0);
 
 
-  azer::Renderer* renderer = rs->GetDefaultRenderer();
+  renderer = rs->GetDefaultRenderer();
   renderer->Use();
   renderer->Clear(azer::Vector4(0.0f, 0.0f, 0.0f, 1.0f));
   renderer->ClearDepthAndStencil();
-  overlay_->SetTexture(renderer_->GetRenderTarget()->GetTexture());
+  overlay_->SetTexture(texrenderer_->GetRenderTarget()->GetTexture());
   overlay_->EnableBlending(false);
   overlay_->Render(renderer);
+
+  effect_->Use(renderer);
+  renderer->Draw(vb_.get(), azer::kTriangleList, 3, 0);
 }
 
 int main(int argc, char* argv[]) {
