@@ -1,4 +1,4 @@
-#include "azer/util/sampleapp.h"
+#include "azer/sandbox/base/sampleapp.h"
 #include "azer/base/appinit.h"
 #include "base/at_exit.h"
 #include "diffuse.afx.h"
