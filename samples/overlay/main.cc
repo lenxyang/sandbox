@@ -67,8 +67,21 @@ void MainDelegate::OnRenderScene(double time, float delta_time) {
   renderer->Draw(vb_.get(), azer::kTriangleList, 3, 0);
   overlay_->SetTexture(texrenderer_->GetRenderTarget()->GetTexture());
 
-  overlay_->SetBounds(gfx::RectF(-0.5, -0.5f, 0.5f, 0.5f));
-  overlay_->SetTexCoord(gfx::PointF(0.0, 0.0f), gfx::PointF(1.0f, 1.0f));
+
+  overlay_->SetBounds(gfx::RectF(0.0f, 0.5f, 0.5f, 0.5f));
+  overlay_->SetTexCoord(gfx::PointF(0.0f, 0.0f), gfx::PointF(0.5f, 0.5f));
+  overlay_->Render(renderer);
+
+  overlay_->SetBounds(gfx::RectF(0.5f, 0.5f, 0.5f, 0.5f));
+  overlay_->SetTexCoord(gfx::PointF(0.5f, 0.0f), gfx::PointF(1.0f, 0.5f));
+  overlay_->Render(renderer);
+  
+  overlay_->SetBounds(gfx::RectF(0.0f, 0.0f, 0.5f, 0.5f));
+  overlay_->SetTexCoord(gfx::PointF(0.0f, 0.5f), gfx::PointF(0.5f, 1.0f));
+  overlay_->Render(renderer);
+
+  overlay_->SetBounds(gfx::RectF(0.5f, 0.0f, 0.5f, 0.5f));
+  overlay_->SetTexCoord(gfx::PointF(0.5f, 0.5f), gfx::PointF(1.0f, 1.0f));
   overlay_->Render(renderer);
 }
 

@@ -8,5 +8,6 @@ group("samples") {
     "cubemap",
     "light",
     "renderer",
+    "overlay",
   ]
 }
