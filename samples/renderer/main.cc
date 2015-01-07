@@ -39,8 +39,7 @@ bool MainDelegate::OnInit() {
   memcpy(vdata.pointer(), (uint8*)v, sizeof(v));
   vb_.reset(rs->CreateVertexBuffer(azer::VertexBuffer::Options(), &vdata));
 
-  overlay_.reset(rs->CreateOverlay(
-      gfx::RectF(-1.0f, 1.0f - 0.25f, 0.25f, 0.25f)));
+  overlay_.reset(rs->CreateOverlay());
 
   azer::Texture::Options rdopt;
   rdopt.width = 800;
@@ -66,7 +65,6 @@ void MainDelegate::OnRenderScene(double time, float delta_time) {
   renderer->Clear(azer::Vector4(0.0f, 0.0f, 0.0f, 1.0f));
   renderer->ClearDepthAndStencil();
   overlay_->SetTexture(texrenderer_->GetRenderTarget()->GetTexture());
-  overlay_->EnableBlending(false);
   overlay_->Render(renderer);
 
   effect_->Use(renderer);
