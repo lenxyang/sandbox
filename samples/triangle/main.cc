@@ -12,11 +12,12 @@ class MainDelegate : public SampleApp::Delegate {
   virtual void OnUpdateScene(double time, float delta_time) {}
   virtual void OnRenderScene(double time, float delta_time) {
     azer::RenderSystem* rs = azer::RenderSystem::Current();
-    azer::Renderer* renderer = rs->GetDefaultRenderer();
+    azer::SwapChain* swapchain = app_->GetSwapChain();
+    azer::RendererPtr renderer = swapchain->GetRenderer();
     renderer->Use();
     renderer->Clear(azer::Vector4(0.0f, 0.0f, 0.0f, 1.0f));
     renderer->ClearDepthAndStencil();
-    effect_->Use(renderer);
+    effect_->Use(renderer.get());
     renderer->Draw(vb_.get(), azer::kTriangleList, 3, 0);
   }
   virtual void OnQuit() {}
@@ -50,6 +51,7 @@ int main(int argc, char* argv[]) {
 
   MainDelegate delegate;
   SampleApp app(&delegate);
+  delegate.SetApp(&app);
   app.Init();
 
   app.MainLoop();

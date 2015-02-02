@@ -4,6 +4,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "azer/render/util/render_system_loader.h"
 #include "azer/render/render_system.h"
+#include "azer/render/surface.h"
 
 SampleApp::SampleApp(const Options& opt, Delegate* delegate)
     : azer::WindowHost(opt)
@@ -20,9 +21,14 @@ SampleApp::SampleApp(Delegate* delegate)
 }
 
 bool SampleApp::OnInit() {
-  CHECK(azer::LoadRenderSystem((gfx::AcceleratedWidget)Handle()));
+  CHECK(azer::LoadRenderSystem());
   DCHECK(render_system_ == NULL);
   render_system_ = azer::RenderSystem::Current();
+
+  surface_.reset(new azer::Surface((gfx::AcceleratedWidget)Handle()));
+  swapchain_.reset(render_system_->CreateSwapChainForSurface(surface_.get()));
+  surface_->SetSwapChain(swapchain_.get());
+  swapchain_->GetRenderer()->SetViewport(azer::Renderer::Viewport());
 
   DCHECK(delegate_ != NULL);
   if (!delegate_->OnInit()) {
@@ -48,7 +54,7 @@ int SampleApp::OnIdle(azer::window::NativeIdleEvent* message) {
   double total = total_ticking_.InSecondsF();
   delegate_->OnRenderScene(total, (float)delta.InSecondsF());
   delegate_->OnUpdateScene(total, (float)delta.InSecondsF());
-  render_system_->Present();
+  swapchain_->Present();
   return kSuccess;
 }
 

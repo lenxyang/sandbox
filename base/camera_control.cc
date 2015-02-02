@@ -64,7 +64,6 @@ void RendererControl(azer::Renderer* renderer, double time) {
   prev_time = time;
   if( ::GetAsyncKeyState('M') & 0x8000f ) {
     azer::RenderSystem* rs = azer::RenderSystem::Current();
-    azer::Renderer* renderer = rs->GetDefaultRenderer();
     azer::FillMode fill = renderer->GetFillMode();
     if (fill == azer::kWireFrame) {
       renderer->SetFillMode(azer::kSolid);

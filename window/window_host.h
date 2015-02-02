@@ -14,6 +14,7 @@
 
 namespace azer {
 class RenderSystem;
+class SwapChain;
 
 class WindowHost : public window::Window {
  public:
@@ -59,7 +60,7 @@ class WindowHost : public window::Window {
   gfx::Rect GetClientBounds();
 
   static void MainLoop(WindowHost* mainwnd);
-  friend void AZER_EXPORT MainRenderLoop(WindowHost* mainwnd);
+  friend void MainRenderLoop(WindowHost* mainwnd, SwapChain* swapchain);
 
   void SetRenderSystem(RenderSystem* rs) { render_system_ = rs;}
   RenderSystem* GetRenderSystem() { return render_system_;}

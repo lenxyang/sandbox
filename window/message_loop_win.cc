@@ -20,7 +20,7 @@ namespace {
 int GenerateDump(EXCEPTION_POINTERS* pExceptionPointers);
 }  // namespace
 
-void MainRenderLoop(WindowHost* mainwnd) {
+void MainRenderLoop(WindowHost* mainwnd, SwapChain* swapchain) {
   ::base::MessageLoop message_loop(::base::MessageLoop::TYPE_UI);
   ::base::TimeDelta total_ticking;
   base::TimeTicks prev_frame = ::base::TimeTicks::HighResNow();
@@ -47,7 +47,7 @@ void MainRenderLoop(WindowHost* mainwnd) {
       }
 
       DCHECK(rs != NULL);
-      rs->Present();
+      swapchain->Present();
     }
   }
 
