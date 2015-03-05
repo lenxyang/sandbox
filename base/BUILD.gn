@@ -10,7 +10,7 @@ static_library("base") {
   ]
   deps = [
     "//azer/util",
-    "//azer/render",
+    "//azer",
     "//azer/render_system/d3d11",
     "//azer/third_party/assimp",
     "../window",

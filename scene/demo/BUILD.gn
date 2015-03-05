@@ -5,12 +5,22 @@ afx("effect") {
   filename = "diffuse"
 }
 
-executable("simple_light") {
-  output_name = "sample_light_sample_light"        
-  sources = ["main.cc"]
+
+executable("demo") {
+  output_name = "asbox_scene_demo"
+
+  sources = [
+    "main.cc",
+    "azer.cc",
+  ]
   deps = [
+    "//skia",
     "//azer",
-    "//azer/sandbox/base",
+    "//ui/views",
+    "//ui/base",
+    "//ui/events",
+    "//ui/gfx",
+    "//ui/gfx/geometry",
     ":effect",
   ]
 
