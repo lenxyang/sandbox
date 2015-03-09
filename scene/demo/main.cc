@@ -7,7 +7,7 @@
 #include "azer/sandbox/base/camera_control.h"
 #include "diffuse.afx.h"
 
-#define MESH_PATH FILE_PATH_LITERAL("azer/sandbox/media/model/Rayguns/Raygun_01.OBJ")
+#define MESH_PATH FILE_PATH_LITERAL("azer/sandbox/media/model/cylinder.3DS")
 #define SHADER_NAME "/diffuse.afx"
 using base::FilePath;
 
