@@ -5,8 +5,7 @@
 using base::FilePath;
 
 
-void MainDelegate::OnRender(const ::base::Time& Time,
-                            const ::base::TimeDelta& delta) {
+void MainDelegate::OnRender(azer::FrameArgs* args) {
   azer::RendererPtr& renderer = GetRenderer();
   renderer->Use();
   renderer->Clear(azer::Vector4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -21,7 +20,7 @@ bool MainDelegate::Initialize(azer::RenderLoop* rl) {
   CHECK(azer::LoadVertexShader(EFFECT_GEN_DIR SHADER_NAME ".vs", &shaders));
   CHECK(azer::LoadPixelShader(EFFECT_GEN_DIR SHADER_NAME ".ps", &shaders));
   DiffuseEffect* effect = new DiffuseEffect(shaders.GetShaderVec(), rs);
-  effect_.reset(effect);
+  effect_ = effect;
   DiffuseEffect::Vertex v[] = {
     DiffuseEffect::Vertex(azer::Vector4( 0.0f, 1.0f, 0.5f, 1.0f ),
                           azer::Vector4( 1.0f, 0.0f, 0.0f, 1.0f )),
@@ -30,9 +29,9 @@ bool MainDelegate::Initialize(azer::RenderLoop* rl) {
     DiffuseEffect::Vertex(azer::Vector4( 1.0f, -1.0f, 0.5f, 1.0f ),
                           azer::Vector4( 0.0f, 0.0f, 1.0f, 1.0f )),
   };
-  azer::VertexData vdata(effect->GetVertexDesc(), ARRAYSIZE(v));
-  memcpy(vdata.pointer(), (uint8*)v, sizeof(v));
-  vb_.reset(rs->CreateVertexBuffer(azer::VertexBuffer::Options(), &vdata));
+  azer::VertexDataPtr vdata(new azer::VertexData(effect->GetVertexDesc(), ARRAYSIZE(v)));
+  memcpy(vdata->pointer(), (uint8*)v, sizeof(v));
+  vb_ = rs->CreateVertexBuffer(azer::VertexBuffer::Options(), vdata.get());
 
   return true;
 }

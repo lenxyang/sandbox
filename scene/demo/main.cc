@@ -9,9 +9,9 @@ using base::ASCIIToUTF16;
 class MainWindowContent : public views::WidgetDelegateView {
  public:
   MainWindowContent(azer::UIEnvironment* env)
-      : env_(env)
-      , fontlist_("Arial, Helvetica, Bold 24px") {
-    set_background(views::Background::CreateStandardPanelBackground());
+      : env_(env) {
+    set_background(views::Background::CreateSolidBackground(0x00000000));
+    // set_background(views::Background::CreateStandardPanelBackground());
   }
 
  private:
@@ -26,8 +26,6 @@ class MainWindowContent : public views::WidgetDelegateView {
     base::MessageLoopForUI::current()->Quit();
     env_->GetRenderLoop()->Quit();
   }
-  
-  
  private:
   azer::UIEnvironment* env_;
   DISALLOW_COPY_AND_ASSIGN(MainWindowContent);

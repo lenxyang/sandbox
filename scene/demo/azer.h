@@ -8,10 +8,8 @@ class MainDelegate : public azer::RenderLoop::Delegate {
  public:
   MainDelegate() {}
   virtual bool Initialize(azer::RenderLoop* rl) override;
-  virtual void OnUpdate(const ::base::Time& Time,
-                        const ::base::TimeDelta& delta) override {}
-  virtual void OnRender(const ::base::Time& Time,
-                        const ::base::TimeDelta& delta) override;
+  virtual void OnUpdate(azer::FrameArgs* args) override {}
+  virtual void OnRenderc(azer::FrameArgs* args) override;
  private:
   azer::VertexBufferPtr vb_;
   std::unique_ptr<azer::Effect> effect_;
