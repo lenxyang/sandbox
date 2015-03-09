@@ -11,7 +11,6 @@ executable("demo") {
 
   sources = [
     "main.cc",
-    "azer.cc",
   ]
   deps = [
     "//skia",
