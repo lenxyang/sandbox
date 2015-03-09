@@ -75,20 +75,21 @@ bool Mesh::InitPhyBuf(const MeshData* mesh, azer::VertexDescPtr& desc,
                       azer::RenderSystem* rs) {
   for (size_t i = 0; i < mesh->groups().size(); ++i) {
     const MeshData::Group& dgroup = mesh->groups()[i];
-    azer::VertexData vdata(desc, dgroup.vertices.size());
-    uint8* ptr = vdata.pointer();
+    azer::VertexDataPtr vdata(new azer::VertexData(desc, dgroup.vertices.size()));
+    uint8* ptr = vdata->pointer();
     for (int j = 0; j < dgroup.vertices.size(); ++j) {
       UpdateVertex((void*)ptr, dgroup.vertices[j]);
       ptr += desc->stride();
     }
 
-    azer::IndicesData idata(dgroup.indices.size(), azer::IndicesData::kUint32);
-    memcpy(idata.pointer(), &(dgroup.indices[0]),
+    azer::IndicesDataPtr idata(new azer::IndicesData(
+        dgroup.indices.size(), azer::IndicesData::kUint32));
+    memcpy(idata->pointer(), &(dgroup.indices[0]),
            sizeof(uint32) * dgroup.indices.size());
 
     Group group;
-    group.vb.reset(rs->CreateVertexBuffer(azer::VertexBuffer::Options(), &vdata));
-    group.ib.reset(rs->CreateIndicesBuffer(azer::IndicesBuffer::Options(), &idata));
+    group.vb = rs->CreateVertexBuffer(azer::VertexBuffer::Options(), vdata.get());
+    group.ib = rs->CreateIndicesBuffer(azer::IndicesBuffer::Options(), idata.get());
     group.mtrl_index = dgroup.mtrl_idx;
     groups_.push_back(group);
   }

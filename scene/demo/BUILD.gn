@@ -20,6 +20,7 @@ executable("demo") {
     "//ui/events",
     "//ui/gfx",
     "//ui/gfx/geometry",
+    "//azer/sandbox/base",
     ":effect",
   ]
 

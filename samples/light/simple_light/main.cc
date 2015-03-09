@@ -50,7 +50,7 @@ bool MainDelegate::Init() {
   
   mesh_.reset(new MyMesh);
   if (!mesh_->Init(&data, rs)) {
-	return false;
+    return false;
   }
 
   light_.dir = azer::Vector4(0.0f, -0.3f, 0.75f, 0.0f);

@@ -5,14 +5,11 @@ static_library("base") {
     "mesh.h",
     "camera_control.cc",
     "camera_control.h",
-    "sampleapp.cc",
-    "sampleapp.h",
   ]
   deps = [
     "//azer/util",
     "//azer",
     "//azer/render_system/d3d11",
     "//azer/third_party/assimp",
-    "../window",
   ]
 }
