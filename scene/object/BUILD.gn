@@ -1,0 +1,29 @@
+import("//azer/build/templates/afx.gni")
+
+afx("effect") {
+  source = "diffuse.afx"
+  filename = "diffuse"
+}
+
+
+executable("object") {
+  output_name = "asbox_scene_object"
+
+  sources = [
+    "main.cc",
+  ]
+  deps = [
+    "//skia",
+    "//azer",
+    "//ui/views",
+    "//ui/base",
+    "//ui/events",
+    "//ui/gfx",
+    "//ui/gfx/geometry",
+    "//azer/sandbox/base",
+    ":effect",
+  ]
+
+  gen_dir = rebase_path(target_gen_dir)
+  defines = ["EFFECT_GEN_DIR=\"$gen_dir/\""]
+}
